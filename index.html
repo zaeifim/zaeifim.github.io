@@ -14,12 +14,12 @@
       --bg:#f3f8ff;
       --border:#d7ddea;
       --text:#111;
-      --muted:#6b7280; /* lighter subtitle */
+      --muted:#6b7280;
       --card:#fff;
       --header-divider:#cfd8ea;
     }
 
-    /* Dark mode (activated by body.dark) */
+    /* Dark mode */
     body.dark{
       --bg:#0b1220;
       --border:#24324d;
@@ -33,7 +33,7 @@
     body{
       font-family: Arial, sans-serif;
       max-width: 980px;
-      margin: 24px auto;              /* tighter top spacing */
+      margin: 24px auto;
       padding: 0 18px;
       line-height: 1.65;
       background: var(--bg);
@@ -52,15 +52,15 @@
       gap:18px;
       flex-wrap:nowrap;
       width:100%;
-      padding-bottom: 14px;           /* subtle divider spacing */
-      border-bottom: 1px solid var(--header-divider); /* subtle divider */
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--header-divider);
     }
 
     .header-left{ min-width: 280px; }
     .name-row{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
 
     .profile-pic{
-      width:110px;                    /* slightly tighter */
+      width:110px;
       height:110px;
       border-radius:50%;
       object-fit:cover;
@@ -69,7 +69,10 @@
       border:4px solid var(--blue-dark);
       box-shadow:0 2px 10px rgba(0,0,0,0.10);
     }
-    body.dark .profile-pic{ background:#0f172a; box-shadow: 0 2px 12px rgba(0,0,0,0.45); }
+    body.dark .profile-pic{
+      background:#0f172a;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.45);
+    }
 
     .row{ display:flex; gap:10px; flex-wrap:wrap; margin-top:12px; }
     .pill{
@@ -87,7 +90,7 @@
       text-align:right;
       min-width:240px;
       flex:0 0 auto;
-      padding-top:10px;               /* a little lower */
+      padding-top:10px;
     }
 
     .icon-row{
@@ -125,7 +128,7 @@
       fill: var(--blue);
     }
 
-    /* Download CV button */
+    /* Download CV button (TOP only) */
     .cv-btn{
       height:42px;
       padding: 0 14px;
@@ -176,8 +179,8 @@
       top: 0;
       background: rgba(243, 248, 255, 0.92);
       backdrop-filter: blur(6px);
-      padding: 10px 0;                /* slightly tighter */
-      margin-top: 12px;               /* tighter gap after header */
+      padding: 10px 0;
+      margin-top: 12px;
       z-index: 10;
     }
     body.dark .menu{ background: rgba(11, 18, 32, 0.72); }
@@ -214,8 +217,6 @@
     }
 
     .muted{ color: var(--muted); }
-    a{ color: var(--blue); text-decoration:none; }
-    a:hover{ text-decoration:underline; }
 
     ul{ margin: 10px 0 0 18px; }
     li{ margin: 6px 0; }
@@ -228,19 +229,12 @@
     .panel{ display:none; }
     .panel.active{ display:block; }
 
-    /* Footer */
+    /* Footer text only */
     .footer{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:12px;
-      padding: 16px 0 24px;
+      padding: 12px 0 26px;
       border-top: 1px solid var(--header-divider);
       margin-top: 18px;
-      flex-wrap: wrap;
     }
-    .footer-left{ display:flex; flex-direction:column; gap:4px; }
-    .footer-icons{ display:flex; gap:10px; align-items:center; }
   </style>
 </head>
 
@@ -267,9 +261,8 @@
       <div class="icon-row">
         <!-- Dark mode toggle -->
         <button class="toggle-btn" id="themeToggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
-          <!-- sun/moon icon -->
           <svg class="toggle-icon" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M12 18a6 6 0 1 1 0-12 6 6 0 0 1 0 12zm0-16a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0V3a1 1 0 0 1 1-1zm0 18a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1zM3 11a1 1 0 0 1 1 1 1 1 0 0 1-1 1H2a1 1 0 1 1 0-2h1zm20 0a1 1 0 0 1 1 1 1 1 0 0 1-1 1h-1a1 1 0 1 1 0-2h1zM5.05 5.05a1 1 0 0 1 1.41 0l.7.7a1 1 0 1 1-1.41 1.41l-.7-.7a1 1 0 0 1 0-1.41zm12.54 12.54a1 1 0 0 1 1.41 0l.7.7a1 1 0 1 1-1.41 1.41l-.7-.7a1 1 0 0 1 0-1.41zM18.95 5.05a1 1 0 0 1 0 1.41l-.7.7a1 1 0 1 1-1.41-1.41l.7-.7a1 1 0 0 1 1.41 0zM7.16 17.84a1 1 0 0 1 0 1.41l-.7.7a1 1 0 1 1-1.41-1.41l.7-.7a1 1 0 0 1 1.41 0z"/>
+            <path d="M12 18a6 6 0 1 1 0-12 6 6 0 0 1 0 12zm0-16a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0V3a1 1 0 0 1 1-1zm0 18a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1zM3 11a1 1 0 0 1 1 1 1 1 0 0 1-1 1H2a1 1 0 1 1 0-2h1zm20 0a1 1 0 0 1 1 1 1 1 0 0 1-1 1h-1a1 1 0 1 1 0-2h1z"/>
           </svg>
         </button>
 
@@ -409,39 +402,10 @@
     </div>
   </div>
 
-  <!-- Footer icons + copyright/last updated -->
+  <!-- Footer TEXT ONLY -->
   <div class="footer">
-    <div class="footer-left">
-      <div class="muted">© <span id="year"></span> Mehdi Zaeifi</div>
-      <div class="muted">Last updated: Feb 2026</div>
-    </div>
-
-    <div class="footer-icons" aria-label="Footer contact links">
-      <a class="icon-link" href="mailto:zaeifi@ou.edu" title="Email" aria-label="Email">
-        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/>
-        </svg>
-      </a>
-
-      <a class="icon-link" href="https://github.com/zaeifim" target="_blank" rel="noopener noreferrer" title="GitHub" aria-label="GitHub">
-        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M12 .5C5.73.5.75 5.63.75 12c0 5.1 3.29 9.43 7.86 10.96.58.11.79-.26.79-.57v-2.1c-3.2.7-3.87-1.41-3.87-1.41-.52-1.36-1.28-1.72-1.28-1.72-1.04-.73.08-.72.08-.72 1.15.08 1.75 1.2 1.75 1.2 1.02 1.78 2.67 1.27 3.32.97.1-.75.4-1.27.73-1.56-2.56-.3-5.26-1.3-5.26-5.8 0-1.28.45-2.33 1.19-3.15-.12-.3-.52-1.5.11-3.12 0 0 .97-.32 3.18 1.2a10.7 10.7 0 0 1 2.9-.4c.98 0 1.97.14 2.9.4 2.2-1.52 3.18-1.2 3.18-1.2.63 1.62.23 2.82.11 3.12.74.82 1.19 1.87 1.19 3.15 0 4.51-2.7 5.5-5.27 5.8.42.37.79 1.1.79 2.22v3.3c0 .31.21.68.8.57A11.27 11.27 0 0 0 23.25 12C23.25 5.63 18.27.5 12 .5z"/>
-        </svg>
-      </a>
-
-      <a class="icon-link" href="https://www.linkedin.com/in/MehdiZaeifi" target="_blank" rel="noopener noreferrer" title="LinkedIn" aria-label="LinkedIn">
-        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0.5 8.5H4.5V23H0.5V8.5zM8.5 8.5H12.3V10.5h.05c.53-.98 1.83-2.02 3.77-2.02 4.03 0 4.78 2.65 4.78 6.1V23h-4v-7.1c0-1.69-.03-3.86-2.35-3.86-2.35 0-2.71 1.84-2.71 3.74V23h-4V8.5z"/>
-        </svg>
-      </a>
-
-      <a class="cv-btn" href="cv.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open CV">
-        <svg class="cv-icon" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm0 2.5L19.5 10H14V4.5z"/>
-        </svg>
-        CV
-      </a>
-    </div>
+    <div class="muted">© <span id="year"></span> Mehdi Zaeifi</div>
+    <div class="muted">Last updated: Feb 2026</div>
   </div>
 
   <script>
