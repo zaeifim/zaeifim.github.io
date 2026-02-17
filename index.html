@@ -9,26 +9,41 @@
       --blue:#1e5eff;
       --blue-dark:#0b3aa8;
       --blue-soft:#e9f1ff;
+
+      /* Light mode */
       --bg:#f3f8ff;
       --border:#d7ddea;
       --text:#111;
-      --muted:#666;
+      --muted:#6b7280; /* lighter subtitle */
       --card:#fff;
+      --header-divider:#cfd8ea;
+    }
+
+    /* Dark mode (activated by body.dark) */
+    body.dark{
+      --bg:#0b1220;
+      --border:#24324d;
+      --text:#e9eefc;
+      --muted:#a8b3cc;
+      --card:#101a2d;
+      --blue-soft:#122b66;
+      --header-divider:#1f2a44;
     }
 
     body{
       font-family: Arial, sans-serif;
       max-width: 980px;
-      margin: 40px auto;
+      margin: 24px auto;              /* tighter top spacing */
       padding: 0 18px;
       line-height: 1.65;
       background: var(--bg);
       color: var(--text);
+      transition: background 0.2s ease, color 0.2s ease;
     }
 
     h1{ margin: 0; font-size: 44px; }
     h2{ margin: 0 0 10px 0; }
-    .sub{ color:#555; margin-top:10px; font-size:16px; }
+    .sub{ color: var(--muted); margin-top: 8px; font-size: 16px; font-weight: 500; }
 
     .topbar{
       display:flex;
@@ -37,21 +52,34 @@
       gap:18px;
       flex-wrap:nowrap;
       width:100%;
+      padding-bottom: 14px;           /* subtle divider spacing */
+      border-bottom: 1px solid var(--header-divider); /* subtle divider */
     }
 
     .header-left{ min-width: 280px; }
     .name-row{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
 
     .profile-pic{
-      width:120px;
-      height:120px;
+      width:110px;                    /* slightly tighter */
+      height:110px;
       border-radius:50%;
       object-fit:cover;
       display:block;
       background:#fff;
       border:4px solid var(--blue-dark);
-      box-shadow:0 2px 10px rgba(0,0,0,0.08);
+      box-shadow:0 2px 10px rgba(0,0,0,0.10);
     }
+    body.dark .profile-pic{ background:#0f172a; box-shadow: 0 2px 12px rgba(0,0,0,0.45); }
+
+    .row{ display:flex; gap:10px; flex-wrap:wrap; margin-top:12px; }
+    .pill{
+      border:1px solid var(--border);
+      background: rgba(255,255,255,0.65);
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 14px;
+    }
+    body.dark .pill{ background: rgba(16,26,45,0.75); }
 
     /* RIGHT block */
     .contact{
@@ -59,7 +87,7 @@
       text-align:right;
       min-width:240px;
       flex:0 0 auto;
-      padding-top:18px;
+      padding-top:10px;               /* a little lower */
     }
 
     .icon-row{
@@ -82,6 +110,7 @@
       justify-content:center;
       transition:0.15s ease;
     }
+    body.dark .icon-link{ background: rgba(16,26,45,0.85); }
 
     .icon-link:hover{
       border-color: var(--blue);
@@ -103,7 +132,7 @@
       border-radius: 12px;
       border: 1px solid var(--blue);
       background: var(--blue-soft);
-      color: var(--blue-dark);
+      color: var(--text);
       font-weight: 700;
       font-size: 14px;
       display:inline-flex;
@@ -112,18 +141,29 @@
       transition:0.15s ease;
       white-space: nowrap;
     }
+    .cv-btn:hover{ transform: translateY(-1px); }
+    .cv-icon{ width:18px; height:18px; fill: var(--blue); display:block; }
 
-    .cv-btn:hover{
-      background: #dce9ff;
+    /* Dark mode toggle */
+    .toggle-btn{
+      height:42px;
+      width:42px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.85);
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      cursor: pointer;
+      transition:0.15s ease;
+    }
+    body.dark .toggle-btn{ background: rgba(16,26,45,0.85); }
+    .toggle-btn:hover{
+      border-color: var(--blue);
+      background: var(--blue-soft);
       transform: translateY(-1px);
     }
-
-    .cv-icon{
-      width:18px;
-      height:18px;
-      fill: var(--blue);
-      display:block;
-    }
+    .toggle-icon{ width:20px; height:20px; fill: var(--blue); }
 
     @media (max-width: 820px){
       .topbar{ flex-wrap:wrap; }
@@ -131,25 +171,16 @@
       .icon-row{ justify-content:flex-start; }
     }
 
-    .row{ display:flex; gap:10px; flex-wrap:wrap; margin-top:14px; }
-    .pill{
-      border:1px solid var(--border);
-      background: rgba(255,255,255,0.65);
-      padding: 6px 10px;
-      border-radius: 999px;
-      font-size: 14px;
-    }
-
     .menu{
       position: sticky;
       top: 0;
       background: rgba(243, 248, 255, 0.92);
       backdrop-filter: blur(6px);
-      padding: 12px 0;
-      border-bottom: 1px solid var(--border);
-      margin-top: 18px;
+      padding: 10px 0;                /* slightly tighter */
+      margin-top: 12px;               /* tighter gap after header */
       z-index: 10;
     }
+    body.dark .menu{ background: rgba(11, 18, 32, 0.72); }
 
     .tabs{ display:flex; flex-wrap:wrap; gap:8px; }
 
@@ -160,9 +191,10 @@
       border-radius: 999px;
       cursor: pointer;
       font-size: 14px;
-      color: #111;
+      color: var(--text);
       transition: 0.15s ease;
     }
+    body.dark .tab-btn{ background: rgba(16,26,45,0.85); }
 
     .tab-btn.active{
       border-color: var(--blue);
@@ -170,7 +202,6 @@
       background: var(--blue-soft);
       font-weight: 700;
     }
-
     .tab-btn:hover{ border-color: var(--blue); }
 
     .card{
@@ -179,7 +210,7 @@
       border-radius: 14px;
       padding: 18px;
       margin: 18px 0;
-      box-shadow: 0 1px 0 rgba(0,0,0,0.02);
+      box-shadow: 0 1px 0 rgba(0,0,0,0.03);
     }
 
     .muted{ color: var(--muted); }
@@ -191,11 +222,25 @@
 
     .role{ margin-top: 12px; }
     .role-title{ font-weight: 700; }
-    .role-meta{ color: #444; }
+    .role-meta{ color: var(--muted); }
     .bullets{ margin-top: 6px; }
 
     .panel{ display:none; }
     .panel.active{ display:block; }
+
+    /* Footer */
+    .footer{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      padding: 16px 0 24px;
+      border-top: 1px solid var(--header-divider);
+      margin-top: 18px;
+      flex-wrap: wrap;
+    }
+    .footer-left{ display:flex; flex-direction:column; gap:4px; }
+    .footer-icons{ display:flex; gap:10px; align-items:center; }
   </style>
 </head>
 
@@ -218,10 +263,17 @@
       </div>
     </div>
 
-    <!-- Right: icons + Download CV -->
     <div class="contact" aria-label="Contact links">
       <div class="icon-row">
-        <!-- Download CV (cv.pdf must be in the repo root) -->
+        <!-- Dark mode toggle -->
+        <button class="toggle-btn" id="themeToggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+          <!-- sun/moon icon -->
+          <svg class="toggle-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 18a6 6 0 1 1 0-12 6 6 0 0 1 0 12zm0-16a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0V3a1 1 0 0 1 1-1zm0 18a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1zM3 11a1 1 0 0 1 1 1 1 1 0 0 1-1 1H2a1 1 0 1 1 0-2h1zm20 0a1 1 0 0 1 1 1 1 1 0 0 1-1 1h-1a1 1 0 1 1 0-2h1zM5.05 5.05a1 1 0 0 1 1.41 0l.7.7a1 1 0 1 1-1.41 1.41l-.7-.7a1 1 0 0 1 0-1.41zm12.54 12.54a1 1 0 0 1 1.41 0l.7.7a1 1 0 1 1-1.41 1.41l-.7-.7a1 1 0 0 1 0-1.41zM18.95 5.05a1 1 0 0 1 0 1.41l-.7.7a1 1 0 1 1-1.41-1.41l.7-.7a1 1 0 0 1 1.41 0zM7.16 17.84a1 1 0 0 1 0 1.41l-.7.7a1 1 0 1 1-1.41-1.41l.7-.7a1 1 0 0 1 1.41 0z"/>
+          </svg>
+        </button>
+
+        <!-- Download CV -->
         <a class="cv-btn" href="cv.pdf" target="_blank" rel="noopener noreferrer" aria-label="Download CV">
           <svg class="cv-icon" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm0 2.5L19.5 10H14V4.5zM12 12a1 1 0 0 1 1 1v3.17l.59-.58a1 1 0 1 1 1.41 1.42l-2.3 2.29a1 1 0 0 1-1.4 0l-2.3-2.29a1 1 0 1 1 1.41-1.42l.59.58V13a1 1 0 0 1 1-1z"/>
@@ -290,7 +342,6 @@
   <div id="experience" class="panel">
     <div class="card">
       <h2>Experience</h2>
-
       <div class="role">
         <div class="role-title">Teaching Assistant – Java Programming</div>
         <div class="role-meta">University of Oklahoma • Fall 2025 – Present • Norman, OK</div>
@@ -358,9 +409,43 @@
     </div>
   </div>
 
-  <p class="muted">Last updated: Feb 2026</p>
+  <!-- Footer icons + copyright/last updated -->
+  <div class="footer">
+    <div class="footer-left">
+      <div class="muted">© <span id="year"></span> Mehdi Zaeifi</div>
+      <div class="muted">Last updated: Feb 2026</div>
+    </div>
+
+    <div class="footer-icons" aria-label="Footer contact links">
+      <a class="icon-link" href="mailto:zaeifi@ou.edu" title="Email" aria-label="Email">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/>
+        </svg>
+      </a>
+
+      <a class="icon-link" href="https://github.com/zaeifim" target="_blank" rel="noopener noreferrer" title="GitHub" aria-label="GitHub">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 .5C5.73.5.75 5.63.75 12c0 5.1 3.29 9.43 7.86 10.96.58.11.79-.26.79-.57v-2.1c-3.2.7-3.87-1.41-3.87-1.41-.52-1.36-1.28-1.72-1.28-1.72-1.04-.73.08-.72.08-.72 1.15.08 1.75 1.2 1.75 1.2 1.02 1.78 2.67 1.27 3.32.97.1-.75.4-1.27.73-1.56-2.56-.3-5.26-1.3-5.26-5.8 0-1.28.45-2.33 1.19-3.15-.12-.3-.52-1.5.11-3.12 0 0 .97-.32 3.18 1.2a10.7 10.7 0 0 1 2.9-.4c.98 0 1.97.14 2.9.4 2.2-1.52 3.18-1.2 3.18-1.2.63 1.62.23 2.82.11 3.12.74.82 1.19 1.87 1.19 3.15 0 4.51-2.7 5.5-5.27 5.8.42.37.79 1.1.79 2.22v3.3c0 .31.21.68.8.57A11.27 11.27 0 0 0 23.25 12C23.25 5.63 18.27.5 12 .5z"/>
+        </svg>
+      </a>
+
+      <a class="icon-link" href="https://www.linkedin.com/in/MehdiZaeifi" target="_blank" rel="noopener noreferrer" title="LinkedIn" aria-label="LinkedIn">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0.5 8.5H4.5V23H0.5V8.5zM8.5 8.5H12.3V10.5h.05c.53-.98 1.83-2.02 3.77-2.02 4.03 0 4.78 2.65 4.78 6.1V23h-4v-7.1c0-1.69-.03-3.86-2.35-3.86-2.35 0-2.71 1.84-2.71 3.74V23h-4V8.5z"/>
+        </svg>
+      </a>
+
+      <a class="cv-btn" href="cv.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open CV">
+        <svg class="cv-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm0 2.5L19.5 10H14V4.5z"/>
+        </svg>
+        CV
+      </a>
+    </div>
+  </div>
 
   <script>
+    // Tabs
     const buttons = document.querySelectorAll('.tab-btn');
     const panels = document.querySelectorAll('.panel');
 
@@ -379,6 +464,19 @@
 
     const initial = (location.hash || '#about').replace('#','');
     if (document.getElementById(initial)) setActive(initial);
+
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Dark mode toggle with localStorage
+    const toggle = document.getElementById('themeToggle');
+    const saved = localStorage.getItem('theme');
+    if (saved === 'dark') document.body.classList.add('dark');
+
+    toggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+    });
   </script>
 </body>
 </html>
