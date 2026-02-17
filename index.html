@@ -5,26 +5,57 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Mehdi Zaeifi</title>
   <style>
-    body { font-family: Arial, sans-serif; max-width: 980px; margin: 50px auto; padding: 0 18px; line-height: 1.65; }
+    body { font-family: Arial, sans-serif; max-width: 980px; margin: 40px auto; padding: 0 18px; line-height: 1.65; }
     h1 { margin: 0; font-size: 44px; }
     h2 { margin: 0 0 10px 0; }
     .sub { color: #555; margin-top: 10px; font-size: 16px; }
+
     .topbar { display: flex; justify-content: space-between; align-items: flex-start; gap: 18px; flex-wrap: wrap; }
     .contact { text-align: right; }
     .contact div { margin: 4px 0; }
+    @media (max-width: 700px) { .contact { text-align: left; } }
+
     .row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
     .pill { border: 1px solid #ddd; padding: 6px 10px; border-radius: 999px; font-size: 14px; }
+
+    /* Menu / tabs */
+    .menu {
+      position: sticky; top: 0;
+      background: #fff;
+      padding: 12px 0;
+      border-bottom: 1px solid #eee;
+      margin-top: 18px;
+      z-index: 10;
+    }
+    .tabs { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tab-btn {
+      border: 1px solid #ddd;
+      background: #fff;
+      padding: 8px 12px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .tab-btn.active {
+      border-color: #111;
+      font-weight: 700;
+    }
+
     .card { border: 1px solid #e2e2e2; border-radius: 14px; padding: 18px; margin: 18px 0; }
     .muted { color: #666; }
     a { text-decoration: none; }
     a:hover { text-decoration: underline; }
     ul { margin: 10px 0 0 18px; }
     li { margin: 6px 0; }
+
     .role { margin-top: 12px; }
     .role-title { font-weight: 700; }
     .role-meta { color: #444; }
     .bullets { margin-top: 6px; }
-    @media (max-width: 700px) { .contact { text-align: left; } }
+
+    /* Hide/show panels */
+    .panel { display: none; }
+    .panel.active { display: block; }
   </style>
 </head>
 
@@ -50,103 +81,143 @@
     </div>
   </div>
 
-  <div class="card">
-    <h2>About</h2>
-    <p>
-      I am a Ph.D. student in Computer Science at the University of Oklahoma.
-      My interests include large language models (LLMs), transfer learning, and multimodal AI,
-      with a focus on building practical AI applications such as retrieval-augmented generation (RAG) systems.
-    </p>
+  <!-- Sticky menu -->
+  <div class="menu">
+    <div class="tabs" role="tablist" aria-label="Site sections">
+      <button class="tab-btn active" data-tab="about" role="tab" aria-selected="true">About</button>
+      <button class="tab-btn" data-tab="education" role="tab" aria-selected="false">Education</button>
+      <button class="tab-btn" data-tab="experience" role="tab" aria-selected="false">Experience</button>
+      <button class="tab-btn" data-tab="research" role="tab" aria-selected="false">Research</button>
+      <button class="tab-btn" data-tab="projects" role="tab" aria-selected="false">Projects</button>
+      <button class="tab-btn" data-tab="skills" role="tab" aria-selected="false">Skills</button>
+    </div>
   </div>
 
-  <div class="card">
-    <h2>Education</h2>
-    <ul>
-      <li><b>University of Oklahoma</b> — Ph.D. in Computer Science (GPA: 4.0/4.0), Fall 2024 – Present, Norman, OK</li>
-      <li><b>University of Tehran</b> — B.Sc. in Computer Engineering (GPA: 3.7/4.0), Aug 2023, Tehran, Iran</li>
-    </ul>
+  <!-- Panels -->
+  <div id="about" class="panel active">
+    <div class="card">
+      <h2>About</h2>
+      <p>
+        I am a Ph.D. student in Computer Science at the University of Oklahoma.
+        My interests include large language models (LLMs), transfer learning, and multimodal AI,
+        with a focus on building practical AI applications such as retrieval-augmented generation (RAG) systems.
+      </p>
+    </div>
   </div>
 
-  <div class="card">
-    <h2>Experience</h2>
-
-    <div class="role">
-      <div class="role-title">Teaching Assistant – Java Programming</div>
-      <div class="role-meta">University of Oklahoma • Fall 2025 – Present • Norman, OK</div>
-      <ul class="bullets">
-        <li>Led lab sessions and graded programming assignments for an undergraduate Java course.</li>
-        <li>Supported students with OOP concepts, debugging, and Eclipse development.</li>
-      </ul>
-    </div>
-
-    <div class="role">
-      <div class="role-title">Research Assistant</div>
-      <div class="role-meta">University of Oklahoma • Fall 2024 – Summer 2025 • Norman, OK</div>
-      <ul class="bullets">
-        <li>Conducted research on large language models (LLMs), transfer learning, and multimodal AI.</li>
-        <li>Co-authored multiple works-in-progress, including surveys on transfer learning and LLMs.</li>
-      </ul>
-    </div>
-
-    <div class="role">
-      <div class="role-title">Teaching Assistant – Logical Circuits</div>
-      <div class="role-meta">University of Tehran • Sep 2022 – Dec 2022 • Tehran, Iran</div>
-      <ul class="bullets">
-        <li>Assisted in grading, preparing assignments, and supporting lab sessions.</li>
-      </ul>
-    </div>
-
-    <div class="role">
-      <div class="role-title">Private Tutor (Mathematics & Physics)</div>
-      <div class="role-meta">Independent • Sep 2021 – Sep 2022 • Tehran, Iran</div>
-      <ul class="bullets">
-        <li>Taught high school and undergraduate students in mathematics and physics.</li>
+  <div id="education" class="panel">
+    <div class="card">
+      <h2>Education</h2>
+      <ul>
+        <li><b>University of Oklahoma</b> — Ph.D. in Computer Science (GPA: 4.0/4.0), Fall 2024 – Present, Norman, OK</li>
+        <li><b>University of Tehran</b> — B.Sc. in Computer Engineering (GPA: 3.7/4.0), Aug 2023, Tehran, Iran</li>
       </ul>
     </div>
   </div>
 
-  <div class="card">
-    <h2>Research & Publications</h2>
-    <ul>
-      <li>
-        <b>IEEE BigData 2024:</b> Smartphone Usage Data Cleaning Using LLM-Based Processing — <span class="muted">Accepted (2024)</span>
+  <div id="experience" class="panel">
+    <div class="card">
+      <h2>Experience</h2>
+
+      <div class="role">
+        <div class="role-title">Teaching Assistant – Java Programming</div>
+        <div class="role-meta">University of Oklahoma • Fall 2025 – Present • Norman, OK</div>
         <ul class="bullets">
-          <li>Accepted at IEEE BigData 2024.</li>
+          <li>Led lab sessions and graded programming assignments for an undergraduate Java course.</li>
+          <li>Supported students with OOP concepts, debugging, and Eclipse development.</li>
         </ul>
-      </li>
+      </div>
 
-      <li>
-        <b>OnRL-RAG:</b> Real-Time Personalized Mental Health Dialogue System — <span class="muted">2024</span>
+      <div class="role">
+        <div class="role-title">Research Assistant</div>
+        <div class="role-meta">University of Oklahoma • Fall 2024 – Summer 2025 • Norman, OK</div>
         <ul class="bullets">
-          <li>Developed a real-time personalized dialogue system using retrieval-augmented generation.</li>
+          <li>Conducted research on large language models (LLMs), transfer learning, and multimodal AI.</li>
+          <li>Co-authored multiple works-in-progress, including surveys on transfer learning and LLMs.</li>
         </ul>
-      </li>
+      </div>
 
-      <li>
-        <b>In Progress:</b> Surveys on Transfer Learning / LLMs / AI-Driven Applications — <span class="muted">2025</span>
+      <div class="role">
+        <div class="role-title">Teaching Assistant – Logical Circuits</div>
+        <div class="role-meta">University of Tehran • Sep 2022 – Dec 2022 • Tehran, Iran</div>
         <ul class="bullets">
-          <li>Surveys on transfer learning for generative AI, LLMs for model-centric AI, and AI-driven applications.</li>
+          <li>Assisted in grading, preparing assignments, and supporting lab sessions.</li>
         </ul>
-      </li>
-    </ul>
+      </div>
+
+      <div class="role">
+        <div class="role-title">Private Tutor (Mathematics & Physics)</div>
+        <div class="role-meta">Independent • Sep 2021 – Sep 2022 • Tehran, Iran</div>
+        <ul class="bullets">
+          <li>Taught high school and undergraduate students in mathematics and physics.</li>
+        </ul>
+      </div>
+    </div>
   </div>
 
-  <div class="card">
-    <h2>Projects</h2>
-    <ul>
-      <li><b>Knowledge Graph Alignment via Neural Networks</b></li>
-      <li><b>American Sign Language Recognition Using Machine Learning</b></li>
-    </ul>
+  <div id="research" class="panel">
+    <div class="card">
+      <h2>Research & Publications</h2>
+      <ul>
+        <li>
+          <b>IEEE BigData 2024:</b> Smartphone Usage Data Cleaning Using LLM-Based Processing — <span class="muted">Accepted (2024)</span>
+        </li>
+        <li>
+          <b>OnRL-RAG:</b> Real-Time Personalized Mental Health Dialogue System — <span class="muted">2024</span>
+          <div class="muted">Real-time personalized dialogue system using retrieval-augmented generation.</div>
+        </li>
+        <li>
+          <b>In Progress:</b> Surveys on Transfer Learning / LLMs / AI-Driven Applications — <span class="muted">2025</span>
+          <div class="muted">Surveys on transfer learning for generative AI, LLMs for model-centric AI, and AI-driven applications.</div>
+        </li>
+      </ul>
+    </div>
   </div>
 
-  <div class="card">
-    <h2>Skills</h2>
-    <ul>
-      <li><b>Programming:</b> Python, Java, C++, R</li>
-      <li><b>Frameworks/Tools:</b> PyTorch, Eclipse, Trello, LaTeX</li>
-    </ul>
+  <div id="projects" class="panel">
+    <div class="card">
+      <h2>Projects</h2>
+      <ul>
+        <li><b>Knowledge Graph Alignment via Neural Networks</b></li>
+        <li><b>American Sign Language Recognition Using Machine Learning</b></li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="skills" class="panel">
+    <div class="card">
+      <h2>Skills</h2>
+      <ul>
+        <li><b>Programming:</b> Python, Java, C++, R</li>
+        <li><b>Frameworks/Tools:</b> PyTorch, Eclipse, Trello, LaTeX</li>
+      </ul>
+    </div>
   </div>
 
   <p class="muted">Last updated: Feb 2026</p>
+
+  <script>
+    // Simple tab switching
+    const buttons = document.querySelectorAll('.tab-btn');
+    const panels = document.querySelectorAll('.panel');
+
+    function setActive(tabId) {
+      panels.forEach(p => p.classList.toggle('active', p.id === tabId));
+      buttons.forEach(b => {
+        const isActive = b.dataset.tab === tabId;
+        b.classList.toggle('active', isActive);
+        b.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      });
+      // optional: keep URL hash in sync
+      history.replaceState(null, '', '#' + tabId);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    buttons.forEach(btn => btn.addEventListener('click', () => setActive(btn.dataset.tab)));
+
+    // If user opens with a hash like #projects, show that tab
+    const initial = (location.hash || '#about').replace('#', '');
+    if (document.getElementById(initial)) setActive(initial);
+  </script>
 </body>
 </html>
