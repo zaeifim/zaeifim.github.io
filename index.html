@@ -1,41 +1,115 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Mehdi Zaeifi</title>
   <style>
-    body { font-family: Arial, sans-serif; max-width: 900px; margin: 50px auto; padding: 0 18px; line-height: 1.6; }
-    h1 { margin-bottom: 0; }
-    .sub { color: #555; margin-top: 6px; }
-    .card { border: 1px solid #ddd; border-radius: 12px; padding: 16px; margin: 16px 0; }
+    body { font-family: Arial, sans-serif; max-width: 960px; margin: 50px auto; padding: 0 18px; line-height: 1.65; }
+    h1 { margin: 0; }
+    .sub { color: #555; margin-top: 8px; }
+    .row { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 10px; }
+    .pill { border: 1px solid #ddd; padding: 6px 10px; border-radius: 999px; font-size: 14px; }
+    .card { border: 1px solid #e2e2e2; border-radius: 14px; padding: 18px; margin: 18px 0; }
+    h2 { margin-top: 0; }
+    ul { margin: 10px 0 0 18px; }
+    .muted { color: #666; }
     a { text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .topbar { display: flex; justify-content: space-between; align-items: flex-start; gap: 18px; flex-wrap: wrap; }
+    .contact { text-align: right; }
+    @media (max-width: 700px) { .contact { text-align: left; } }
   </style>
 </head>
+
 <body>
-  <h1>Mehdi Zaeifi</h1>
-  <div class="sub">PhD Student • Computer Science • University of Oklahoma</div>
+  <div class="topbar">
+    <div>
+      <h1>Mehdi Zaeifi</h1>
+      <div class="sub">Ph.D. Student (Computer Science) • University of Oklahoma • Norman, OK</div>
+      <div class="row">
+        <span class="pill">Data Science & AI</span>
+        <span class="pill">NLP / LLMs</span>
+        <span class="pill">Machine Learning</span>
+        <span class="pill">Knowledge Graphs</span>
+      </div>
+    </div>
+
+    <div class="contact">
+      <div><b>Email:</b> <a href="mailto:zaeifi@ou.edu">zaeifi@ou.edu</a></div>
+      <div><b>GitHub:</b> <a href="https://github.com/zaeifim">github.com/zaeifim</a></div>
+      <!-- Replace with your real LinkedIn URL if you want -->
+      <div><b>LinkedIn:</b> <a href="https://www.linkedin.com/">linkedin.com/in/your-link</a></div>
+    </div>
+  </div>
 
   <div class="card">
     <h2>About</h2>
-    <p>Write 3–5 lines about you (research interests, what you’re building, etc.).</p>
+    <p>
+      I am a Ph.D. student in Computer Science at the University of Oklahoma, in a dual program with an M.S. in Data Science & Analytics.
+      My interests include data science, machine learning, and applied AI systems, including LLM-based data processing and real-time dialogue systems.
+    </p>
   </div>
 
   <div class="card">
-    <h2>Projects</h2>
+    <h2>Education</h2>
     <ul>
-      <li><b>Project 1</b> — one sentence. <a href="#">link</a></li>
-      <li><b>Project 2</b> — one sentence. <a href="#">link</a></li>
+      <li><b>Ph.D., Computer Science</b> — University of Oklahoma (Fall 2024 – Present), GPA: 4.0/4 :contentReference[oaicite:1]{index=1}</li>
+      <li><b>M.S., Data Science & Analytics</b> — University of Oklahoma (Fall 2024 – Present), GPA: 4.0/4 :contentReference[oaicite:2]{index=2}</li>
+      <li><b>B.Sc., Computer Engineering</b> — University of Tehran (Aug 2023), GPA: 4.0/4 :contentReference[oaicite:3]{index=3}</li>
     </ul>
   </div>
 
   <div class="card">
-    <h2>Contact</h2>
+    <h2>Experience</h2>
     <ul>
-      <li>Email: <a href="mailto:you@ou.edu">you@ou.edu</a></li>
-      <li>GitHub: <a href="https://github.com/zaeifim">zaeifim</a></li>
-      <li>LinkedIn: <a href="https://www.linkedin.com/">LinkedIn</a></li>
+      <li>
+        <b>Teaching Assistant</b> — University of Oklahoma (Fall 2025 – Present)
+        <div class="muted">Intro to Programming in Java: led labs/recitations, graded assignments/exams, held office hours. :contentReference[oaicite:4]{index=4}</div>
+      </li>
+      <li>
+        <b>Graduate Research Assistant</b> — University of Oklahoma (Fall 2024 – Summer 2025)
+        <div class="muted">Supported data science/AI experiments, model training, and results documentation. :contentReference[oaicite:5]{index=5}</div>
+      </li>
+      <li>
+        <b>Social Media & IT Manager</b> — Faraz Social Media Management (Fall 2023 – Summer 2024)
+        <div class="muted">Managed content calendar/analytics, coordinated ads, and provided IT support. :contentReference[oaicite:6]{index=6}</div>
+      </li>
+      <li>
+        <b>Graduate Research & Teaching Assistant</b> — University of Tehran (Fall 2021 – Fall 2023)
+        <div class="muted">Supported instruction, labs, mentoring, and grading. :contentReference[oaicite:7]{index=7}</div>
+      </li>
     </ul>
   </div>
+
+  <div class="card">
+    <h2>Publications & Selected Projects</h2>
+    <ul>
+      <li><b>Accepted Paper:</b> Smartphone Usage Data Cleaning Using LLM-Based Processing — IEEE BigData 2024 (M. Zaeifi, B. Lin). :contentReference[oaicite:8]{index=8}</li>
+      <li><b>OnRL-RAG:</b> Real-Time Personalized Mental Health Dialogue System (A. Bilal, M. Zaeifi, B. Lin). :contentReference[oaicite:9]{index=9}</li>
+      <li><b>Knowledge Graph Alignment:</b> Neural network method for entity alignment; evaluated alignment accuracy across graphs. :contentReference[oaicite:10]{index=10}</li>
+      <li><b>American Sign Language Recognition:</b> Built ML classifiers on video/image features to recognize gestures. :contentReference[oaicite:11]{index=11}</li>
+      <li><b>Early Warning for Hospital Readmissions:</b> Engineered EHR-style features; trained models to flag at-risk patients. :contentReference[oaicite:12]{index=12}</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Honors & Awards</h2>
+    <ul>
+      <li>Travel Award — IEEE BigData 2024 :contentReference[oaicite:13]{index=13}</li>
+      <li>New Ph.D. Recruitment Fellowship — Gallogly College of Engineering, University of Oklahoma (Fall 2024) :contentReference[oaicite:14]{index=14}</li>
+      <li>Ranked 89th nationwide — Iran’s University Entrance Exam (2019) :contentReference[oaicite:15]{index=15}</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Technical Skills</h2>
+    <ul>
+      <li><b>Programming:</b> Python, Java, C++, R, SQL :contentReference[oaicite:16]{index=16}</li>
+      <li><b>Tools/ML:</b> PyTorch, Docker, Linux, Git, LaTeX :contentReference[oaicite:17]{index=17}</li>
+    </ul>
+  </div>
+
+  <p class="muted">Last updated: Feb 2026</p>
 </body>
 </html>
