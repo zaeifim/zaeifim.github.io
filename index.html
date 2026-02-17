@@ -5,7 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Mehdi Zaeifi</title>
   <style>
-    body { font-family: Arial, sans-serif; max-width: 980px; margin: 40px auto; padding: 0 18px; line-height: 1.65; }
+    :root{
+      --blue: #1e5eff;
+      --blue-soft: #e9f1ff;
+      --bg: #f3f8ff;          /* light blue page background */
+      --border: #d7ddea;
+      --text: #111;
+      --muted: #666;
+      --card: #fff;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 980px;
+      margin: 40px auto;
+      padding: 0 18px;
+      line-height: 1.65;
+      background: var(--bg);  /* light blue background */
+      color: var(--text);
+    }
+
     h1 { margin: 0; font-size: 44px; }
     h2 { margin: 0 0 10px 0; }
     .sub { color: #555; margin-top: 10px; font-size: 16px; }
@@ -16,35 +35,64 @@
     @media (max-width: 700px) { .contact { text-align: left; } }
 
     .row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
-    .pill { border: 1px solid #ddd; padding: 6px 10px; border-radius: 999px; font-size: 14px; }
+    .pill {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.65);
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 14px;
+    }
 
     /* Menu / tabs */
     .menu {
-      position: sticky; top: 0;
-      background: #fff;
+      position: sticky;
+      top: 0;
+      background: rgba(243, 248, 255, 0.92); /* matches page background */
+      backdrop-filter: blur(6px);
       padding: 12px 0;
-      border-bottom: 1px solid #eee;
+      border-bottom: 1px solid var(--border);
       margin-top: 18px;
       z-index: 10;
     }
+
     .tabs { display: flex; flex-wrap: wrap; gap: 8px; }
+
     .tab-btn {
-      border: 1px solid #ddd;
-      background: #fff;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.75);
       padding: 8px 12px;
       border-radius: 999px;
       cursor: pointer;
       font-size: 14px;
+      color: #111;
+      transition: 0.15s ease;
     }
+
+    /* ACTIVE TAB = BLUE */
     .tab-btn.active {
-      border-color: #111;
+      border-color: var(--blue);
+      color: var(--blue);
+      background: var(--blue-soft);
       font-weight: 700;
     }
 
-    .card { border: 1px solid #e2e2e2; border-radius: 14px; padding: 18px; margin: 18px 0; }
-    .muted { color: #666; }
-    a { text-decoration: none; }
+    .tab-btn:hover {
+      border-color: var(--blue);
+    }
+
+    .card {
+      border: 1px solid var(--border);
+      background: var(--card);
+      border-radius: 14px;
+      padding: 18px;
+      margin: 18px 0;
+      box-shadow: 0 1px 0 rgba(0,0,0,0.02);
+    }
+
+    .muted { color: var(--muted); }
+    a { color: var(--blue); text-decoration: none; }
     a:hover { text-decoration: underline; }
+
     ul { margin: 10px 0 0 18px; }
     li { margin: 6px 0; }
 
@@ -98,9 +146,9 @@
     <div class="card">
       <h2>About</h2>
       <p>
-        I am a Ph.D. student in Computer Science at the University of Oklahoma.
-        My interests include large language models (LLMs), transfer learning, and multimodal AI,
-        with a focus on building practical AI applications such as retrieval-augmented generation (RAG) systems.
+        I am a Ph.D. student in Computer Science at the University of Oklahoma. My interests include large language models (LLMs),
+        transfer learning, and multimodal AI, with a focus on building practical AI applications such as retrieval-augmented generation (RAG)
+        systems.
       </p>
     </div>
   </div>
@@ -159,17 +207,9 @@
     <div class="card">
       <h2>Research & Publications</h2>
       <ul>
-        <li>
-          <b>IEEE BigData 2024:</b> Smartphone Usage Data Cleaning Using LLM-Based Processing — <span class="muted">Accepted (2024)</span>
-        </li>
-        <li>
-          <b>OnRL-RAG:</b> Real-Time Personalized Mental Health Dialogue System — <span class="muted">2024</span>
-          <div class="muted">Real-time personalized dialogue system using retrieval-augmented generation.</div>
-        </li>
-        <li>
-          <b>In Progress:</b> Surveys on Transfer Learning / LLMs / AI-Driven Applications — <span class="muted">2025</span>
-          <div class="muted">Surveys on transfer learning for generative AI, LLMs for model-centric AI, and AI-driven applications.</div>
-        </li>
+        <li><b>IEEE BigData 2024:</b> Smartphone Usage Data Cleaning Using LLM-Based Processing — <span class="muted">Accepted (2024)</span></li>
+        <li><b>OnRL-RAG:</b> Real-Time Personalized Mental Health Dialogue System — <span class="muted">2024</span></li>
+        <li><b>In Progress:</b> Surveys on Transfer Learning / LLMs / AI-Driven Applications — <span class="muted">2025</span></li>
       </ul>
     </div>
   </div>
@@ -197,7 +237,6 @@
   <p class="muted">Last updated: Feb 2026</p>
 
   <script>
-    // Simple tab switching
     const buttons = document.querySelectorAll('.tab-btn');
     const panels = document.querySelectorAll('.panel');
 
@@ -208,14 +247,12 @@
         b.classList.toggle('active', isActive);
         b.setAttribute('aria-selected', isActive ? 'true' : 'false');
       });
-      // optional: keep URL hash in sync
       history.replaceState(null, '', '#' + tabId);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     buttons.forEach(btn => btn.addEventListener('click', () => setActive(btn.dataset.tab)));
 
-    // If user opens with a hash like #projects, show that tab
     const initial = (location.hash || '#about').replace('#', '');
     if (document.getElementById(initial)) setActive(initial);
   </script>
